@@ -56,6 +56,20 @@ router.post('/', (req, res, next) => {
   });
 });
 
+router.put('/:id', checkId, (req, res, next) => {
+  const updateCategory = {
+    name: req.body.name
+  }
+  knex('categories')
+  .where('id', req.params.id)
+  .returning('*')
+  .update(updateCategory)
+  .then(result => {
+    res.send(result);
+  })
+})
+
+
 router.delete('/:id', checkId, (req, res, next) => {
   knex('categories')
   .where('id', req.params.id)

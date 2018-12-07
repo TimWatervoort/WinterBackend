@@ -68,6 +68,19 @@ router.post('/', (req, res, next) => {
       res.send(toSend);
     })
   });
+});
+
+router.put('/excuse/:id', checkId, (req, res, next) => {
+  const updateExcuse = {
+    excuse: req.body.excuse
+  }
+  knex('excuses')
+  .where('id', req.params.id)
+  .returning('*')
+  .update(updateExcuse)
+  .then(result => {
+    res.send(result);
+  })
 })
 
 router.delete('/excuse/:id', checkId, (req, res, next) => {
