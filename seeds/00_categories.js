@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
         {id: 3, name: 'religion'},
         {id: 4, name: 'death'},
         {id: 5, name: 'florida'},
+        {id: 6, name: 'injured'}
       ])
       .then(function() {
       return knex.raw(`SELECT setval('categories_id_seq', (SELECT MAX(id) FROM categories))`)
